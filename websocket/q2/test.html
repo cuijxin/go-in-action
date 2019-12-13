@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>
+            豆瓣电影 Top 250
+        </title>
+    </head>
+
+    <body>
+
+            <script type='text/javascript'>
+                var ws = new WebSocket("ws://localhost:2303/ping");  
+//连接打开时触发 
+ws.onopen = function(evt) {  
+    console.log("Connection open ...");  
+    ws.send("Hello WebSockets!");  
+};  
+//接收到消息时触发  
+ws.onmessage = function(evt) {  
+    console.log("Received Message: " + evt.data);  
+};  
+//连接关闭时触发  
+ws.onclose = function(evt) {  
+    console.log("Connection closed.");  
+};  
+            </script>
+
+    </body>
+
+</html>
