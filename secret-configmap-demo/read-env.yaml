@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: envtest
+  labels:
+    name: envtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: envtest
+  template:
+    metadata:
+      labels:
+        name: envtest
+    spec:
+      containers:
+      - name: envtest
+        image: cuijx/envtest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: TOKEN
+          value: "abcd123456"
+        - name: LANGUAGE
+          value: "English"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: envtest-svc
+spec:
+  ports:
+    - name: envtest
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    name: envtest
+  type: NodePort
